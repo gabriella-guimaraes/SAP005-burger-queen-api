@@ -1,0 +1,64 @@
+{
+    "products": [
+        {
+            "id": 0,
+            "name": "Hambúrguer simples",
+            "price": 10,
+            "flavor": "carne",
+            "complement": null,
+            "image": "https://www.perdigao.com.br/assets/_images/4850f411315852efc87363480bd7a63fb96da849.png",
+            "type": "all-day",
+            "sub_type": "hamburguer",
+            "createdAt": "2021-02-16T13:11:54.173Z",
+            "updatedAt": "2021-02-16T13:11:54.173Z"
+          },
+          {
+            "id": 1,
+            "name": "Hambúrguer simples",
+            "price": 11,
+            "flavor": "carne",
+            "complement": "ovo",
+            "image": "https://www.perdigao.com.br/assets/_images/4850f411315852efc87363480bd7a63fb96da849.png",
+            "type": "all-day",
+            "sub_type": "hamburguer",
+            "createdAt": "2021-02-16T13:11:54.173Z",
+            "updatedAt": "2021-02-16T13:11:54.173Z"
+          },
+          {
+            "id": 2,
+            "name": "Hambúrguer duplo",
+            "price": 16,
+            "flavor": "frango",
+            "complement": "queijo",
+            "image": "https://www.perdigao.com.br/assets/_images/4850f411315852efc87363480bd7a63fb96da849.png",
+            "type": "all-day",
+            "sub_type": "hamburguer",
+            "createdAt": "2021-02-16T13:11:54.173Z",
+            "updatedAt": "2021-02-16T13:11:54.173Z"
+          },
+          {
+            "id": 3,
+            "name": "Refrigerante 750mL",
+            "price": 7,
+            "flavor": null,
+            "complement": null,
+            "image": "https://www.abcdacomunicacao.com.br/wp-content/uploads/refri.png",
+            "type": "all-day",
+            "sub_type": "drinks",
+            "createdAt": "2021-02-16T13:11:54.173Z",
+            "updatedAt": "2021-02-16T13:11:54.173Z"
+          },
+          {
+            "id": 4,
+            "name": "Batata frita",
+            "price": 5,
+            "flavor": null,
+            "complement": null,
+            "image": "https://s2.glbimg.com/6TYFXwek9ZpNXFeOzas09KizMKk=/0x0:1280x853/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/T/K/Hh8h2GR96v392DAkAqyA/912c9713-321e-4dfd-bca9-888c05c5ce50.jpeg",
+            "type": "all-day",
+            "sub_type": "side",
+            "createdAt": "2021-02-16T13:11:54.173Z",
+            "updatedAt": "2021-02-16T13:11:54.173Z"
+          }
+    ]
+}

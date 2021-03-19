@@ -1,16 +1,27 @@
+let ordersCollection = require('./Orders.json')
+
 const getAllOrders = (req, res) => {
     console.log("olha os pedidos chegando...")
-    res.send([{
-        "id": 0,
-        "client_name": "Rafe Adler",
-        "user_id": 0,
-        "Products" : [{
-            "id":0,
-            "name": "hámburger simples de carne",
-            "flavor": "carne",
-            "type": "hamburger"
-        }]
-    }])
+    res.send(ordersCollection)
 }
 
-module.exports = { getAllOrders }
+const getOrderById = (req, res) => {
+    let id = ordersCollection.orders.filter(function(order){
+        return order.id === Number(req.params.id)
+    })
+    res.send(id)
+}
+
+const updateOrder = (req, res) => {
+    res.send("order updated")
+}
+
+const deleteOrder = (req, res) => {
+    res.send("order deleted")
+}
+
+const createOrder = (req, res) => {
+    res.send("order created")
+}
+
+module.exports = { getAllOrders, updateOrder, deleteOrder, createOrder, getOrderById }
