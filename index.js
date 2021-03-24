@@ -1,14 +1,20 @@
+require("dotenv").config();
+
 const express = require('express')
 const routes = require('./server/routes/index')
 const app = express()
-const port = 3000
 
-app.use('/', routes);
 
-app.get('*', (req, res) => {
-  res.send('Hello World!')
-})
+const PORT = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.use(express.json());
+app.use(routes);
+
+//error handling
+app.use((err, req, res, next) => {
+  if (process.env.NODE_ENV === "production")
+    res.status(500).json({ error: "internal server error" });
+  else return next(err);
+});
+
+app.listen(PORT)

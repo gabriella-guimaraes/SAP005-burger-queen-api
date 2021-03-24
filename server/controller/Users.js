@@ -1,31 +1,55 @@
 // aqui vai o código que acessa o banco de dados
-let usersCollection = require('./Users.json');
+// let usersCollection = require('./Users.json');
+// const users = require('../db/models/user');
+const database = require('../db/models');
 
-const getAllUsers = (req, res) => {
-  console.log("você também pode utilizar o console para visualizar =)")
-  res.send(usersCollection)
+
+class UserController {
+  static async getAllUsers(req, res){
+    const allUsers = await database.User.findAll()
+    return res.status(200).json(allUsers)
+  }
+
+  static async getUserById(req, res){
+    const { uid } = req.params
+    const user = await database.User.findAll({
+      where: {
+        id: Number(uid)
+      }
+    });
+    return res.status(200).json(user)
+  }
+
+  static async deleteUser(req, res){
+    const { uid } = req.params
+    const deleteUser = await database.User.destroy({
+      where: {
+        id: Number(uid)
+      }
+    });
+    return res.status(201).json(deleteUser)
+  }
+
+  static async updateUser(req, res){
+    const updateUser = await database.User.update({userName: req.body.userName}, {
+      where: {
+        id: req.params
+      }
+    })
+    return res.status(201).json(updateUser)
+  }
+
+  static async createUser(req, res){
+    const {
+      userName,
+      email,
+      password,
+      role,
+      restaurant
+    } = req.body;
+    const create = await database.User.create(req.body)
+    return res.status(201).json(create)
+  }
 }
 
-const getUserById = (req, res) => {
-  let id = usersCollection.users.filter(function(user){
-    console.log(user.uid, req.params.uid)
-    return user.uid === Number(req.params.uid);
-  });
-  res.send(id);
-}
-
-const updateUser = (req, res) => {
-  //get the user id
-  //update info
-  res.send("user updated")
-}
-
-const deleteUser = (req, res) => {
-  res.send("user deleted")
-}
-
-const addNewUser = (req, res) => {
-  res.send("new user crated")
-}
-
-module.exports = { getAllUsers, getUserById, updateUser, deleteUser, addNewUser }
+module.exports = UserController

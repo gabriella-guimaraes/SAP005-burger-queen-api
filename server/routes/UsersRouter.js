@@ -6,8 +6,8 @@ const router = Router()
 // aqui vai as requisições
 router.get("/", UsersController.getAllUsers)
 router.get("/:uid", UsersController.getUserById)
-router.delete("/", UsersController.deleteUser)
+router.delete("/:uid", UsersController.deleteUser)
 router.put("/", UsersController.updateUser)
-router.post("/", UsersController.addNewUser)
+router.post("/", UsersController.createUser)
 
 module.exports = router
