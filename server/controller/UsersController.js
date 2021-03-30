@@ -1,11 +1,10 @@
 const database = require('../db/models');
+const UsersService = require('../services/UsersServices');
 
 class UserController {
   static async getAllUsers(req, res){
     try{
-      const allUsers = await database.User.findAll({
-        attributes: { exclude: ['password'] }
-      })
+      const allUsers = await UsersService.getUsers()
       
       if(allUsers.length > 0){
         return res.status(200).json(allUsers)
@@ -23,20 +22,18 @@ class UserController {
 
   static async getUserById(req, res){
     try{
-      const { uid } = req.params
-      const user = await database.User.findAll({
-        where: {
-          id: Number(uid)
-        }
-      });
+      const uid = req.params.uid
+      const user = await UsersService.getUser(uid);
 
-      if(user.length > 0){
-        return res.status(200).json(user)
-      } else {
-        return res.json({
-          message: `no user with the id = ${uid} found.`
-        })
-      }
+      return res.status(200).json(user)
+
+      // if(user.length > 0){
+      //   return res.status(200).json(user)
+      // } else {
+      //   return res.status(400).json({
+      //     message: `no user with the id = ${uid} found.`
+      //   })
+      // }
     }
     catch(error){
       return res.status(400).json({ error: error.message });
@@ -46,16 +43,12 @@ class UserController {
 
   static async deleteUser(req, res){
     try{
-      const { uid } = req.params
-      const deleteUser = await database.User.destroy({
-        where: {
-          id: Number(uid)
-        }
-      });
-      return res.status(201).json(deleteUser)
+      const uid = req.params.uid
+      const deleteUser = await UsersService.destroyUser(uid);
+      return res.status(201).json({message: "User deleted!"})
     }
     catch(error){
-      console.log(error.message)
+      return res.status(400).json({ error: error.message });
     }
   }
 
@@ -83,15 +76,22 @@ class UserController {
 
   static async createUser(req, res){
     try{
-      const createUser = await database.User.create({
+      const userData = {
         userName: req.body.userName,
         email: req.body.email,
         password: req.body.password,
         role: req.body.role,
         restaurant: req.body.restaurant
-      })
+      }
+      
+      if(userData.userName === "" || userData.email === "" || userData.password === "" || userData.role === "" || userData.restaurant === ""){
+        return res.json({message: "userName, email, password, role or restaurant not provided."})
+      } else{
+        const createUser = await UsersService.newUser(userData)
+        return res.status(201).json({message: "User created!"})
+      }
 
-      res.status(201).json(createUser)
+      
     }
     catch(error){
       console.log(error.message)

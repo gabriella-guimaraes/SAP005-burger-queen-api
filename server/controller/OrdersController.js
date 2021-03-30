@@ -2,8 +2,12 @@ const database = require('../db/models');
 
 class OrdersController {
     static async getAllOrders(req, res){
-        const allOrders = await database.Orders.findAll()
-        return res.status(200).json(allOrders)
+        try{
+            //code here
+        }
+        catch(error){}
+        // const allOrders = await database.Orders.findAll()
+        // return res.status(200).json(allOrders)
     }
 
     static async getOrderById(req,res){
@@ -40,3 +44,5 @@ class OrdersController {
         return res.status(201).json(create)
     }
 }
+
+module.exports = OrdersController
