@@ -1,12 +1,12 @@
-// const { Router } = require('express')
-// const OrderController = require('../controller/Orders')
+const { Router } = require('express')
+const OrderController = require('../controller/OrdersController')
 
-// const router = Router()
+const router = Router()
 
-// router.get("/", OrderController.getAllOrders)
-// router.get("/:id", OrderController.getOrderById)
-// router.put("/", OrderController.updateOrder)
-// router.delete("/", OrderController.deleteOrder)
-// router.post("/", OrderController.createOrder)
+router.get("/", OrderController.getAllOrders)
+router.get("/:productId", OrderController.getOrderById)
+router.put("/:productId", OrderController.updateOrder)
+router.delete("/:productId", OrderController.deleteOrder)
+router.post("/", OrderController.createOrder)
 
-// module.exports = router
+module.exports = router

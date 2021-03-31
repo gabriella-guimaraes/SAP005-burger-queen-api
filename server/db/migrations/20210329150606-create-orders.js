@@ -30,8 +30,8 @@ module.exports = {
         defaultValue: true
       },
       processedAt: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: Sequelize.DATE
+        
       },
       createdAt: {
         allowNull: false,
@@ -45,5 +45,6 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Orders');
+    return queryInterface.removeColumn('processedAt');
   }
 };
