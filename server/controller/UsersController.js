@@ -88,7 +88,9 @@ class UserController {
         return res.json({message: "userName, email, password, role or restaurant not provided."})
       } else{
         const createUser = await UsersService.newUser(userData)
-        return res.status(201).json({message: "User created!"})
+        res.status(201).json({message: "User created!"})
+        console.log(createUser)
+        
       }
 
       

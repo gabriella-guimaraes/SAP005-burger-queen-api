@@ -14,7 +14,7 @@ class OrdersController {
                     "status" : order.status,
                     "createdAt": order.createdAt,
                     "updatedAt": order.updatedAt,
-                    "products": order.orders.map(product => {
+                    "products": order.orders.map((product) => {
                         return {
                             "id" : product.id,
                             "name" : product.name,
@@ -42,7 +42,7 @@ class OrdersController {
             getOrder = {
                 "order_id" : getOrder.id,
                 "user" : getOrder.User.userName,
-                "client_name" : getOrder.client_name,
+                "clientName" : getOrder.clientName,
                 "table" : getOrder.table,
                 "status" : getOrder.status,
                 "createdAt": getOrder.createdAt,
