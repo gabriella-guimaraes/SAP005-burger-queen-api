@@ -1,9 +1,9 @@
 require("dotenv").config();
 
 const bcrypt = require("bcrypt");
-const User = require("../models/user");
+const database = require("../models");
 
-User.create({
+database.User.create({
     userName: "Admin",
     password: bcrypt.hashSync("123", 10),
     email: "admin@email.com",
@@ -11,6 +11,6 @@ User.create({
     restaurant: "gg-burguer"
 });
 
-User.findAll().then((result) => {
+database.User.findAll().then((result) => {
     console.log(result);
 });  

@@ -16,11 +16,21 @@ module.exports = {
             if(!user){
                 return res.status(401).json({message: "email not found."})
             }
+            if(!password){
+                return res.status(401).json({message: "invalid password."})
+            }
 
-            let jwtPayload = { email: user.email };
+            let jwtPayload = { email: user.email, id: user.id };
             let token = jwt.sign(jwtPayload, process.env.JWT_SECRET);
 
-            return res.status(200).json({ token });
+            return res.status(200).json({
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                restaurant: user.restaurant,
+                token
+            });
         })
     },
 
@@ -38,7 +48,7 @@ module.exports = {
                 return res.status(401).json({message: "failed to authenticate token!"});
             }
 
-            req.email = decoded.email
+            req.id = decoded.id;
             next();
         })
     }
