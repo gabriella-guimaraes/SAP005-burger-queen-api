@@ -30,7 +30,8 @@ module.exports = {
         defaultValue: true
       },
       processedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
         
       },
       createdAt: {

@@ -7,7 +7,7 @@ class OrdersController {
             let getOrders = await OrdersServices.getOrders()
             getOrders.map(order => {
                 return {
-                    "order_id" : order.id,
+                    "orderId" : order.id,
                     "user" : order.User.userName,
                     "client_name" : order.client_name,
                     "table" : order.table,

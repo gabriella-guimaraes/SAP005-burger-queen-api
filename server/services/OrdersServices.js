@@ -5,8 +5,9 @@ class OrdersServices {
         return await database.Orders.findAll({
             include: [{
                 model: database.Products,
-                required: false,
                 as: "orders",
+                required: false,
+                attributes: ['id', 'name', 'flavor', 'complement'],
                 through: {
                     model: database.ProductsOrders,
                     as: "productsOrdersQtd",
@@ -28,8 +29,9 @@ class OrdersServices {
             },
             include: [{
                 model: database.Products,
-                required: false,
                 as: "orders", 
+                required: false,
+                attributes: ['id', 'name', 'flavor', 'complement'],
                 through: {
                     model: database.ProductsOrders,
                     as: "productsOrdersQtd",
