@@ -5,7 +5,7 @@ class OrdersServices {
         return await database.Orders.findAll({
             include: [{
                 model: database.Products,
-                as: "orders",
+                as: "products",
                 required: false,
                 attributes: ["id", "name", "flavor", "complement"],
                 through: {
@@ -29,7 +29,7 @@ class OrdersServices {
             },
             include: [{
                 model: database.Products,
-                as: "orders", 
+                as: "products", 
                 required: false,
                 attributes: ["id", "name", "flavor", "complement"],
                 through: {

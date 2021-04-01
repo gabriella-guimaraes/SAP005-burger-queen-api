@@ -9,21 +9,26 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       price: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       flavor: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       complement: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       image: {
         type: Sequelize.STRING
       },
       sub_type: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

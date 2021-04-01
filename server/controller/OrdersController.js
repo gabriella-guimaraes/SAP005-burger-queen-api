@@ -5,16 +5,16 @@ class OrdersController {
     static async getAllOrders(req, res){
         try{
             let getOrders = await OrdersServices.getOrders()
-            getOrders.map(order => {
+            getOrders = getOrders.map((order) => {
                 return {
                     "orderId" : order.id,
                     "user" : order.User.userName,
-                    "client_name" : order.client_name,
+                    "clientName" : order.clientName,
                     "table" : order.table,
                     "status" : order.status,
                     "createdAt": order.createdAt,
                     "updatedAt": order.updatedAt,
-                    "products": order.orders.map((product) => {
+                    "products": order.products.map((product) => {
                         return {
                             "id" : product.id,
                             "name" : product.name,
@@ -47,7 +47,7 @@ class OrdersController {
                 "status" : getOrder.status,
                 "createdAt": getOrder.createdAt,
                 "updatedAt": getOrder.updatedAt,
-                "products": getOrder.orders.map(product => {
+                "products": getOrder.products.map(product => {
                     return {
                         "id" : product.id,
                         "name" : product.name,

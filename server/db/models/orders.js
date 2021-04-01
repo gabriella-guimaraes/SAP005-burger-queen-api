@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Orders.belongsToMany(models.Products, {
         through: 'ProductsOrders',
-        as: 'orders',
+        as: 'products',
         foreignKey: 'orderId',
         onDelete: 'CASCADE',
         hooks: true

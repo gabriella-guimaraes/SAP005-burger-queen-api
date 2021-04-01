@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Products.belongsToMany(models.Orders, {
         through: "ProductsOrders",
-        as: "orders",
+        as: "products",
         foreignKey: "productId",
         onDelete: "CASCADE",
         hooks: true
