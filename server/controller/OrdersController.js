@@ -4,8 +4,8 @@ const OrdersServices = require('../services/OrdersServices');
 class OrdersController {
     static async getAllOrders(req, res){
         try{
-            let getOrders = await OrdersServices.getOrders()
-            getOrders = getOrders.map((order) => {
+            const getOrders = await OrdersServices.getOrders()
+            const orderList = getOrders.map((order) => {
                 return {
                     "orderId" : order.id,
                     "user" : order.User.userName,
@@ -25,8 +25,8 @@ class OrdersController {
                     })
                 }
             })
-            res.status(201).json(getOrders);
-            console.log(getOrders);
+            res.status(201).json(orderList);
+            console.log(orderList);
         }
         catch(error){
             res.status(400).json({message: error})
@@ -37,10 +37,10 @@ class OrdersController {
 
     static async getOrderById(req,res){
         try{
-            const order_id = req.params
-            let getOrder = await OrdersServices.getOrder(order_id);
+            const orderId = req.params.id;
+            let getOrder = await OrdersServices.getOrder(orderId);
             getOrder = {
-                "order_id" : getOrder.id,
+                "orderId" : getOrder.id,
                 "user" : getOrder.User.userName,
                 "clientName" : getOrder.clientName,
                 "table" : getOrder.table,
@@ -67,11 +67,11 @@ class OrdersController {
 
     static async deleteOrder(req, res){
         try{
-            const order_id = req.params
-            let order = await OrdersServices.getOrder(order_id);
+            const orderId = req.params
+            let order = await OrdersServices.getOrder(orderId);
 
             if(order){
-                await OrdersServices.destroyOrder(order_id);
+                await OrdersServices.destroyOrder(orderId);
                 res.status(200).json({message: "order deleted."})
             } else {
                 return res.status(400).json({message: "processing error. Requisition failed."})
@@ -86,13 +86,13 @@ class OrdersController {
 
     static async updateOrder(req, res){
         try{
-            const order_id = req.params
+            const orderId = req.params
             const newStatus = req.body.newStatus
-            let order = await OrdersServices.getOrder(order_id);
+            let order = await OrdersServices.getOrder(orderId);
 
             if(order){
-                await OrdersServices.updateOrder(order_id, newStatus);
-                res.status(204).json({message: `order ${order_id} updated.`})
+                await OrdersServices.updateOrder(orderId, newStatus);
+                res.status(204).json({message: `order ${orderId} updated.`})
             } else {
                 res.status(400).json({message: "processing error. Requisition failed."})
             }
