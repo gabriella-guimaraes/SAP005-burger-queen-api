@@ -7,7 +7,8 @@ class ProductsController {
             const allProducts = await ProductsServices.getProducts()
             
             if(allProducts.length > 0){
-              return res.status(200).json(allProducts)
+              res.status(200).json(allProducts);
+              console.log(allProducts)
             } else {
               return res.json({
                 message: "processing error"
@@ -47,6 +48,7 @@ class ProductsController {
             return res.status(201).json(deleteProduct)
           }
           catch(error){
+            res.status(400).json({ error: error.message });
             console.log(error.message)
           }
     }
@@ -71,9 +73,7 @@ class ProductsController {
           }
           catch(error){
               console.log(error.message)
-            res.status(400).json({
-                message: "update error"
-            })
+              return res.status(400).json({ error: error.message });
           }
     }
 
@@ -96,6 +96,7 @@ class ProductsController {
             }
           }
           catch(error){
+            res.status(400).json({ error: error.message });
             console.log(error.message)
           }
     }

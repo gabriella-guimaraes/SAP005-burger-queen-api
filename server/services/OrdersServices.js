@@ -1,7 +1,7 @@
 const database = require('../db/models');
 
-class OrdersServices {
-    static async getOrders(){
+const OrdersServices = {
+    async getOrders(){
         return await database.Orders.findAll({
             include: [{
                 model: database.Products,
@@ -9,7 +9,7 @@ class OrdersServices {
                 required: false,
                 attributes: ["id", "name", "flavor", "complement"],
                 through: {
-                    model: database.ProductsOrders,
+                    model: database.ProductsOrder,
                     as: "productsOrdersQtd",
                     attributes: ["qtd"]
                 }
@@ -20,9 +20,9 @@ class OrdersServices {
                 attributes: ["userName", "id"]
             }]
         });
-    }
+    },
 
-    static async getOrder(orderId){
+    async getOrder(orderId){
         return await database.Orders.findOne({
             where: {
                 id: orderId
@@ -33,7 +33,7 @@ class OrdersServices {
                 required: false,
                 attributes: ["id", "name", "flavor", "complement"],
                 through: {
-                    model: database.ProductsOrders,
+                    model: database.ProductsOrder,
                     as: "productsOrdersQtd",
                     attributes: ["qtd"]
                 }
@@ -44,19 +44,19 @@ class OrdersServices {
             attributes: ["userName", "id"]  
         }]
         })
-    }
+    },
 
-    static async destroyOrder(orderId){
+    async destroyOrder(orderId){
         return await database.Orders.destroy({
             where: {
                 id: orderId
             },
             cascade: true
         });
-    }
+    },
 
 
-    static async updateOrder(order_id, newStatus){
+    async updateOrder(orderId, newStatus){
         return await database.Orders.update({
             status: newStatus
         },
@@ -66,17 +66,17 @@ class OrdersServices {
             },
             cascade: true
         })
-    }
+    },
 
-    static async createOrder(data){
+    async createOrder(data){
         return await database.Orders.create(data)
-    }
+    },
 
-    static async getOrderProducts(){
+    async getOrderProducts(){
         return await database.ProductsOrders.findAll();
-    }
+    },
 
-    static async createOrderProducts(data){
+    async createOrderProducts(data){
         return await database.ProductsOrders.bulkCreate(data);
     }
 }

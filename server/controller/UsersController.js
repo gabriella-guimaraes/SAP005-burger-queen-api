@@ -7,7 +7,8 @@ class UserController {
       const allUsers = await UsersService.getUsers()
       
       if(allUsers.length > 0){
-        return res.status(200).json(allUsers)
+        res.status(200).json(allUsers);
+        console.log(allUsers);
       } else {
         return res.json({
           message: "processing error"
@@ -70,6 +71,7 @@ class UserController {
 
     }
     catch(error){
+      res.status(400).json({ error: error.message });
       console.log(error.message)
     }
   }
@@ -96,6 +98,7 @@ class UserController {
       
     }
     catch(error){
+      res.status(400).json({ error: error.message });
       console.log(error.message)
     }
   }
