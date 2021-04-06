@@ -3,10 +3,10 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class ProductsOrder extends Model {
+  class ProductsOrders extends Model {
     static associate(models) {
       // define association here
-      models.Orders.belongsToMany(models.Products, {
+     models.Orders.belongsToMany(models.Products, {
         through: 'ProductsOrders',
         foreignKey: 'orderId',
         onDelete: 'CASCADE',
@@ -19,15 +19,14 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         hooks: true
       });
-      
     }
   };
-  ProductsOrder.init({
+  ProductsOrders.init({
     productId: DataTypes.INTEGER,
     qtd: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'ProductsOrder',
+    modelName: 'ProductsOrders',
   });
-  return ProductsOrder;
+  return ProductsOrders;
 };

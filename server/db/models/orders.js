@@ -4,7 +4,6 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Orders extends Model {
-    
     static associate(models) {
       // define association here
       Orders.belongsTo(models.User, {
@@ -18,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         hooks: true
       });
-      
     }
   };
   Orders.init({

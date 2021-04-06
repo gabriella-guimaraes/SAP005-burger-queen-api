@@ -33,7 +33,7 @@ const OrdersServices = {
                 required: false,
                 attributes: ["id", "name", "flavor", "complement"],
                 through: {
-                    model: database.ProductsOrder,
+                    model: database.ProductsOrders,
                     as: "productsOrdersQtd",
                     attributes: ["qtd"]
                 }

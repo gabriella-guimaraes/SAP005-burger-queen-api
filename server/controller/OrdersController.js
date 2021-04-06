@@ -37,7 +37,7 @@ class OrdersController {
 
     static async getOrderById(req,res){
         try{
-            const orderId = req.params.id;
+            const orderId = req.params;
             let getOrder = await OrdersServices.getOrder(orderId);
             getOrder = {
                 "orderId" : getOrder.id,
@@ -109,7 +109,7 @@ class OrdersController {
             let orderProducts = req.body.products;
             orderProducts = orderProducts.map(product => {
                 return {
-                    "order_id" : newOrder.id,
+                    "orderId" : newOrder.id,
                     "productId" : product.id,
                     "qtd" : product.qtd
                 }
